@@ -13,23 +13,30 @@ class FileStorage:
         """Returns a dictionary of models cls currently in storage"""
         res = {}
         if cls is not None:
-            for key, obj in FileStorage.__objects.items():
-                if cls  == obj.__class__:
-                    res[key] = obj
+            for key, obj in self.__objects.items():
+                part = key.replace('.', ' ')
+                part = shlex.split(part)
+                if (part[0] == cls.__name__):
+                    res[key] = self.__objects[key]
+                """if cls  == obj.__class__:
+                    res[key] = obj"""
             return res
-        return FileStorage.__objects
+        return self.__objects
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
+        if obj:
+            """key = "{}.{}".format(type(obj).__name__, obj.id)
+            self.__objects[key] = obj"""
         self.all().update({obj.to_dict()['__class__'] + '.' + obj.id: obj})
 
     def save(self):
         """Saves storage dictionary to file"""
+        temp = {}
+        temp.update(self.__objects)
+        for key, val in temp.items():
+            temp[key] = val.to_dict()
         with open(FileStorage.__file_path, 'w') as f:
-            temp = {}
-            temp.update(FileStorage.__objects)
-            for key, val in temp.items():
-                temp[key] = val.to_dict()
             json.dump(temp, f)
 
     def reload(self):
