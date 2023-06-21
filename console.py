@@ -135,7 +135,7 @@ class HBNBCommand(cmd.Cmd):
                 if _val[0] == '"' and _val[-1] == '"':
                     _val = _val[1:-1]
                     _val = _val.replace('_', ' ')
-                    _val = _val.replace('\\"', '')
+                    _val = _val.replace('\\"', '"')
                     _val = str(_val)
                 elif '.' in _val:
                     try:
