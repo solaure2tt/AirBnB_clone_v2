@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
 # Bash script that sets up my web servers for the deployment of web_static
-apt-get update
-apt-get install -y nginx
-
-mkdir -p /data/
-mkdir -p /data/web_static/
-mkdir -p /data/web_static/releases/
+sudo apt-get update
+sudo apt-get install -y nginx
 mkdir -p /data/web_static/shared/
 mkdir -p /data/web_static/releases/test/
 echo "Hello server!" > /data/web_static/releases/test/index.html
-ln -sF /data/web_static/releases/test/ /data/web_static/current
-sudo chown -R ubuntu:group /data/
+ln -sf /data/web_static/releases/test/ /data/web_static/current
+chown -R ubuntu /data/
+chgrp -R ubuntu /data/
 
 printf %s "server {
     listen 80 default_server;
@@ -35,4 +32,4 @@ printf %s "server {
     }
 }" > /etc/nginx/sites-available/default
 
-service nginx restart
+sudo service nginx restart
