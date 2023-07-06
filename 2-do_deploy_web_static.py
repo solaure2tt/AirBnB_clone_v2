@@ -5,6 +5,7 @@ from fabric.api import get
 from fabric.api import put
 from fabric.api import reboot
 from fabric.api import run
+from fabric.api import env
 from fabric.api import sudo
 from fabric.context_managers import cd
 import time
@@ -12,7 +13,6 @@ import os.path
 from datetime import datetime
 
 env.hosts = ['54.197.92.158', '52.201.229.118']
-env.user = ubuntu
 
 
 def do_deploy(archive_path):

@@ -3,6 +3,7 @@
 from fabric.api import local
 from fabric.api import get
 from fabric.api import put
+from fabric.api import env
 from fabric.api import reboot
 from fabric.api import run
 from fabric.api import sudo
