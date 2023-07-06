@@ -63,7 +63,7 @@ def do_deploy(archive_path):
     return True
 
 
-def do_deploy():
+def deploy():
     """distributed the archive to my web servers"""
     file = do_pack()
     if file is None:
