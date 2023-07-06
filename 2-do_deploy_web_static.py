@@ -11,7 +11,8 @@ import time
 import os.path
 from datetime import datetime
 
-env.hosts = ["54.197.92.158", "52.201.229.118"]
+env.hosts = ['54.197.92.158', '52.201.229.118']
+env.user = ubuntu
 
 
 def do_deploy(archive_path):
