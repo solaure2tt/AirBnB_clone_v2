@@ -10,12 +10,20 @@ from fabric.api import sudo
 from fabric.context_managers import cd
 import time
 import os.path
+from datetime import datetime
 
 
 def do_pack():
     """create a tar file of the folder web_static"""
     da = "versions/web_static"
-    ds = "%s_%s.tgz" % (da, time.strftime("%Y%m%d%H%M%S", time.gmtime()))
+    """ds = "%s_%s.tgz" % (da, time.strftime("%Y%m%d%H%M%S", time.gmtime()))"""
+    dt = datetime.utcnow()
+    ds = "versions/web_static_{}{}{}{}{}{}.tgz".format(dt.year,
+                                                         dt.month,
+                                                         dt.day,
+                                                         dt.hour,
+                                                         dt.minute,
+                                                         dt.second)
     if os.path.isdir("versions") is False:
         if local("mkdir -p versions").failed is True:
             return None
