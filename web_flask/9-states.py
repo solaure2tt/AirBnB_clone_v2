@@ -17,7 +17,7 @@ def list_states2():
 
 
 @app.route("/states/<id>", strict_slashes=False)
-def list_states_id():
+def list_states_id(id):
     """function that display a state with id"""
     states = storage.all("State")
     for state in states.values():
