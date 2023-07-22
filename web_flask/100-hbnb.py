@@ -9,13 +9,15 @@ from models import storage
 app = Flask(__name__)
 
 
-@app.route("/hbnb_filters", strict_slashes=False)
-def cities_states1():
+@app.route("/hbnb", strict_slashes=False)
+def cities_states2():
     """function that display cities by states"""
     states = storage.all("State")
     amenities = storage.all("Amenity")
-    return render_template('10-hbnb_filters.html',
-                           states=states, amenities=amenities)
+    places = storage.all("Place")
+    return render_template('100-hbnb.html',
+                           states=states, amenities=amenities,
+                           places=places)
 
 
 @app.teardown_appcontext
