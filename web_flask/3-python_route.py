@@ -3,7 +3,8 @@
    /: display “Hello HBNB!”
    /hbnb: display “HBNB”
    /c/<text>: display “C ” followed by the value of the text variable
-   /python/(<text>): display “Python ”, followed by the value of the text variable
+   /python/(<text>): display “Python ”,
+   followed by the value of the text variable
    """
 from flask import Flask
 
@@ -15,10 +16,12 @@ def hello():
     """function that display “Hello HBNB!”"""
     return "Hello HBNB!"
 
+
 @app.route("/hbnb", strict_slashes=False)
 def hello2():
     """function that display HBNB"""
     return "HBNB"
+
 
 @app.route("/c/<text>", strict_slashes=False)
 def hello3(text):
@@ -27,6 +30,7 @@ def hello3(text):
     """
     res = text.replace("_", " ")
     return "C {}".format(res)
+
 
 @app.route("/python", strict_slashes=False)
 @app.route("/python/<text>", strict_slashes=False)
