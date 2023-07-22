@@ -12,11 +12,12 @@ app = Flask(__name__)
 @app.route("/hbnb_filters", strict_slashes=False)
 def cities_states1():
     """function that display cities by states"""
-    states = storage.all('State')
+    states = storage.all("State")
     return render_template('10-hbnb_filters.html', states=states)
 
+
 @app.teardown_appcontext
-def removesession():
+def teardown(exc):
     """Remove the session after each request"""
     storage.close()
 
